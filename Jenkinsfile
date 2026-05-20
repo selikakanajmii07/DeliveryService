@@ -44,7 +44,7 @@ pipeline {
                       -p 8086:8086 ^
                       %DELIVERY_IMAGE%
 
-                    ping 127.0.0.1 -n 10 > nul
+                    timeout /t 5
 
                     curl -X POST http://localhost:8086/delivery
 
@@ -71,13 +71,13 @@ pipeline {
 
         stage('Deploy Kubernetes') {
             steps {
-                bat 'echo DEPLOY OK'
+                echo 'Deploy Kubernetes placeholder'
             }
         }
 
         stage('Verify') {
             steps {
-                bat 'echo PIPELINE SUCCESS'
+                echo 'PIPELINE SUCCESS'
             }
         }
     }
