@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DELIVERY_IMAGE = "selikakanajmii07/delivery-service:${env.BUILD_NUMBER}"
+        DELIVERY_IMAGE = "selikakanajmi/delivery-service:${env.BUILD_NUMBER}"
     }
 
     stages {
