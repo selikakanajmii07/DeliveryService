@@ -44,9 +44,9 @@ pipeline {
                       -p 8086:8086 ^
                       %DELIVERY_IMAGE%
 
-                    timeout /t 5
+                    ping 127.0.0.1 -n 10 > nul
 
-                    curl -X POST http://localhost:8086/delivery
+                    curl http://localhost:8086
 
                     docker rm -f test-delivery
                     '''
@@ -57,7 +57,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'logistic-login',
+                    credentialsId: 'dockerhub-login',
                     usernameVariable: 'USERNAME',
                     passwordVariable: 'PASSWORD'
                 )]) {
